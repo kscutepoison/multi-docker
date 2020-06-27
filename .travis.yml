@@ -22,3 +22,16 @@ after_success:
   - docker push kenshiva/multi-nginx
   - docker push kenshiva/multi-server
   - docker push kenshiva/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: p-northeast-1
+  app: multi-docker-app
+  env: MultiDockerApp-env
+  bucket_name: elasticbeanstalk-ap-northeast-1-679246223201
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
